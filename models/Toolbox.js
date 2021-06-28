@@ -8,7 +8,7 @@ class Toolbox {
 
 
   constructor(row) {
-
+    this.id = row.id;
     this.item = row.item;
     this.color = row.color;
 
@@ -17,7 +17,7 @@ class Toolbox {
   static async insert({ item, color }) {
     const { rows } = await pool.query(`
     INSERT INTO toolbox (item, color)
-    VALUES ($1, $2,)
+    VALUES ($1, $2)
     RETURNING *`, [item, color]
     );
     return new Toolbox(rows[0]);
