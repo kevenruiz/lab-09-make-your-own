@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Toolbox from '../models/Toolbox.js';
 
 describe('demo routes', () => {
   beforeEach(() => {
@@ -18,6 +19,16 @@ describe('demo routes', () => {
       item: 'cable',
       color: 'Black',
     });
+  });
+
+  it('it gets a tool by id via GET', async () => {
+    const tool = await Tool.insert({
+      name: 'hammer',
+      color: 'brown'
+    });
+    const res = await request(app).get(`/api/v1/tools/${tool.id}`);
+
+    expect(res.body).toEqual(tool);
   });
 
 });
