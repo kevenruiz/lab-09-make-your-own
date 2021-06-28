@@ -22,13 +22,14 @@ describe('demo routes', () => {
   });
 
   it('it gets a tool by id via GET', async () => {
-    const tool = await Tool.insert({
-      name: 'hammer',
+    const tool = await Toolbox.insert({
+      item: 'hammer',
       color: 'brown'
     });
-    const res = await request(app).get(`/api/v1/tools/${tool.id}`);
+    const res = await request(app).get(`/api/v1/toolbox/${tool.id}`);
 
     expect(res.body).toEqual(tool);
+    console.log(res.body);
   });
 
 });

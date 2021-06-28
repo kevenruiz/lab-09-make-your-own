@@ -23,6 +23,19 @@ class Toolbox {
     return new Toolbox(rows[0]);
   }
 
+  static async findById(id) {
+    const { rows } = await pool.query(`
+    SELECT *
+    FROM toolbox
+    WHERE id = $1
+    `, [id]);
+    if (!rows[0]) return null;
+
+    return new Toolbox(rows[0]);
+
+
+  }
+
 
 }
 export default Toolbox;

@@ -9,5 +9,13 @@ export default Router()
     } catch (err) {
       res.status(500).send({ error: err.message });
     }
+  })
+  .get('/api/v1/toolbox/:id', async (req, res, next) => {
+    try {
+      const tool = await Toolbox.findById(req.params.id);
+      res.send(tool);
+    } catch (err) {
+      next(err);
+    }
   });
 
