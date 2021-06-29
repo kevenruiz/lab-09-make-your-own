@@ -52,6 +52,18 @@ class Toolbox {
     return new Toolbox(rows[0]);
   }
 
+  static async put(id, item, color) {
+    const { rows } = await pool.query(`
+    UPDATE toolbox
+    SET item = $1,
+        color = $2
+    WHERE id = $3
+    RETURNING *
+    `, [id, item, color]
+    );
+    return new Toolbox(rows[0]);
+  }
+
 
 }
 export default Toolbox;

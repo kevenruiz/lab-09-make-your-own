@@ -33,5 +33,13 @@ export default Router()
     } catch (err) {
       next(err);
     }
+  })
+  .put('/api/v1/toolbox/:id', async (req, res, next) => {
+    try {
+      const tool = await Toolbox.put(req.body.item, req.body.color, req.params.id);
+      res.send(tool);
+    } catch (err) {
+      next(err);
+    }
   });
 

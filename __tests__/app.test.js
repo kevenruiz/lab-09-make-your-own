@@ -59,19 +59,21 @@ describe('demo routes', () => {
     expect(res.body).toEqual(tool1);
   });
 
-  it('updates a tool in the toolbox', async () => {
+  it('updates a tool', async () => {
     const tool1 = await Toolbox.insert({
-      item: 'any weapon',
-      color: 'is white a color?'
+      item: 'Its gonna get delete it',
+      color: 'What color is a mirror?',
     });
-    const updatedTool = await Toolbox.insert({
-      item: 'updated weapon',
-      color: 'should this be black? is black a color?'
-    });
-    const res = await request(app).put(`/api/v1/toolbox/${tool1.id}`).send(`${updatedTool.id}`);
 
-    expect(res.body).toEqual(updatedTool);
+    const tool2 = ({
+      id: '1',
+      item: 'just kidding I am now tool numero 2',
+      color: 'I am feeling blue actually',
+
+    });
+
+    const res = await request(app).put(`/api/v1/toolbox/${tool1.id}`).send(tool2);
+    expect(res.body).toEqual(tool2);
   });
-
 
 });
