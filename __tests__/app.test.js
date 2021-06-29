@@ -29,7 +29,25 @@ describe('demo routes', () => {
     const res = await request(app).get(`/api/v1/toolbox/${tool.id}`);
 
     expect(res.body).toEqual(tool);
-    console.log(res.body);
   });
+
+  it(' finds all tools via GET', async () => {
+    const toolOne = await Toolbox.insert({
+      item: 'screwdriver',
+      color: 'Gray'
+    });
+    const toolTwo = await Toolbox.insert({
+      item: 'blah blah',
+      color: 'Black'
+    });
+    const toolThree = await Toolbox.insert({
+      item: 'laddy Dah',
+      color: 'repetition is key'
+    });
+    const res = await request(app).get('/api/v1/toolbox');
+    expect(res.body).toEqual([toolOne, toolTwo, toolThree]);
+  });
+
+
 
 });
