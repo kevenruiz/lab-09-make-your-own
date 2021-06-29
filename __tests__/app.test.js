@@ -48,6 +48,16 @@ describe('demo routes', () => {
     expect(res.body).toEqual([toolOne, toolTwo, toolThree]);
   });
 
+  it('deletes a tool', async () => {
+    const tool1 = await Toolbox.insert({
+      item: 'Its gonna get delete it',
+      color: 'What color is a mirror?'
+    });
+
+    const res = await request(app).delete(`/api/v1/toolbox/${tool1.id}`);
+
+    expect(res.body).toEqual(tool1);
+  });
 
 
 });
