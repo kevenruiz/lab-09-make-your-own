@@ -17,5 +17,13 @@ export default Router()
     } catch (err) {
       next(err);
     }
+  })
+  .get('/api/v1/toolbox', async (req, res, next) => {
+    try {
+      const tool = await Toolbox.findAll(req.body);
+      res.send(tool);
+    } catch (err) {
+      next(err);
+    }
   });
 

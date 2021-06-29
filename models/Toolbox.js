@@ -36,6 +36,13 @@ class Toolbox {
 
   }
 
+  static async findAll() {
+    const { rows } = await pool.query(`
+    SELECT * from toolbox
+    `);
+    return rows.map(row => new Toolbox(row));
+  }
+
 
 }
 export default Toolbox;
