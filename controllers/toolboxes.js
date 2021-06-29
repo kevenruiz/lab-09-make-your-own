@@ -25,5 +25,13 @@ export default Router()
     } catch (err) {
       next(err);
     }
+  })
+  .delete('/api/v1/toolbox/:id', async (req, res, next) => {
+    try {
+      const tool = await Toolbox.delete(req.params.id);
+      res.send(tool);
+    } catch (err) {
+      next(err);
+    }
   });
 

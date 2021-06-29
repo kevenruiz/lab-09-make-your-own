@@ -43,6 +43,15 @@ class Toolbox {
     return rows.map(row => new Toolbox(row));
   }
 
+  static async delete(id) {
+    const { rows } = await pool.query(`
+    DELETE FROM toolbox
+    WHERE id = $1
+    RETURNING *
+    `, [id]);
+    return new Toolbox(rows[0]);
+  }
+
 
 }
 export default Toolbox;
